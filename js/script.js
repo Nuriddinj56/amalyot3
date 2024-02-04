@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 
     // Timer
-    const deadline = '2021-03-21'
+    const deadline = '2024-02-10'
 
     function getTimeRemaining(endtime) {
         const timer = Date.parse(endtime) - Date.parse(new Date()),
@@ -101,6 +101,37 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
     setClock('.timer', deadline)
+
+    // Modal
 })
 
+
+const modalTrigger = document.querySelector('[data-modal]')
+modal = document.querySelector('.modal')
+modalCloseBtn = document.querySelector('[data-close]')
+
+
+modalTrigger.addEventListener('click', () => {
+    modal.classList.toggle('show')
+    document.body.style.overflow = 'hidden'
+
+})
+
+function closeModal() {
+    modal.classList.toggle('show')
+    document.body.style.overflow = ''
+}
+
+modalCloseBtn.addEventListener('click', closeModal)
+
+modal.addEventListener('click', (e) => {
+    if (e.target == modal) {
+        closeModal()
+    }
+})
+document.addEventListener('keydown', (e) => {
+    if (e.code == 'Escape' && modal.classList.contains('show')) {
+        closeModal()
+    }
+})
 
