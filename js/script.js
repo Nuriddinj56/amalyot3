@@ -106,16 +106,20 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 
-const modalTrigger = document.querySelector('[data-modal]')
+const modalTrigger = document.querySelectorAll('[data-modal]')
 modal = document.querySelector('.modal')
 modalCloseBtn = document.querySelector('[data-close]')
 
-
-modalTrigger.addEventListener('click', () => {
-    modal.classList.toggle('show')
-    document.body.style.overflow = 'hidden'
-
+modalTrigger.forEach(item => {
+    item.addEventListener('click', () => {
+        modal.classList.toggle('show')
+        document.body.style.overflow = 'hidden'
+    })
 })
+// modalTrigger.addEventListener('click', () => {
+//     modal.classList.toggle('show')
+//     document.body.style.overflow = 'hidden'
+// })
 
 function closeModal() {
     modal.classList.toggle('show')
