@@ -141,12 +141,13 @@ document.addEventListener('keydown', (e) => {
 
 // Class
 class MenuCard {
-    constructor(src, alt, title, desor, price, perentSelector) {
+    constructor(src, alt, title, desor, price, perentSelector, ...classes) {
         this.src = src
         this.alt = alt
         this.title = title
         this.desor = desor
         this.price = price
+        this.classes = classes
         this.parent = document.querySelector(perentSelector)
         this.transfer = 12400
         this.chageToUZS()
@@ -157,10 +158,16 @@ class MenuCard {
 
     render() {
         const element = document.createElement('div')
+        if (this.classes.length == 0) {
+            this.element = 'menu__item'
+            element.classList.add(this.element)
+        } else {
+            this.classes.forEach((classname) => element.add(classname))
+        }
+
 
         element.innerHTML = `
         
-        <div class="menu__item">
         <img src=${this.src} alt=${this.alt} />
         <h3 class="menu__item-subtitle">${this.title}</h3>
         <div class="menu__item-descr">
@@ -183,7 +190,8 @@ new MenuCard(
     'Plan “Premium”',
     '           Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque aliquid molestiae, sit eveniet, temporaipsum quaerat recusandae sapiente doloremque corporis dolores quas consectetur ut labore distinctio libero reiciendis harum sequi?',
     "10",
-    '.menu .container'
+    '.menu .container',
+    "menu__item"
 ).render()
 
 new MenuCard(
@@ -192,7 +200,8 @@ new MenuCard(
     'Plan “Premium”',
     '           Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque aliquid molestiae, sit eveniet, temporaipsum quaerat recusandae sapiente doloremque corporis dolores quas consectetur ut labore distinctio libero reiciendis harum sequi?',
     "10",
-    '.menu .container'
+    '.menu .container',
+    "menu__item"
 ).render()
 
 
@@ -202,5 +211,6 @@ new MenuCard(
     'Plan “Premium”',
     '           Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque aliquid molestiae, sit eveniet, temporaipsum quaerat recusandae sapiente doloremque corporis dolores quas consectetur ut labore distinctio libero reiciendis harum sequi?',
     "10",
-    '.menu .container'
+    '.menu .container',
+    "menu__item"
 ).render()
