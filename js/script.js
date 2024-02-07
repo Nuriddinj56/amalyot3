@@ -165,7 +165,6 @@ class MenuCard {
             this.classes.forEach((classname) => element.add(classname))
         }
 
-
         element.innerHTML = `
         
         <img src=${this.src} alt=${this.alt} />
@@ -214,3 +213,32 @@ new MenuCard(
     '.menu .container',
     "menu__item"
 ).render()
+
+const slides = document.querySelectorAll('.offer__slide')
+next = document.querySelector('.offer__slider-next')
+prev = document.querySelector('.offer__slider-prav')
+
+let slideIndex = 1
+
+showSlides(slideIndex)
+
+function showSlides(ind) {
+    if (ind > slides.length) {
+        slideIndex = 1
+    }
+    if (ind < 1) {
+        slideIndex = slides.length
+    }
+    slides.forEach(item => item.style.display = 'none')
+    slides[slideIndex - 1].style.display = 'blok'
+}
+
+function playSlides(ind) {
+    showSlides(slideIndex += ind)
+}
+next.addEventListener('click', () => {
+    playSlides(1)
+})
+prev.addEventListener('click', () => {
+    playSlides(-1)
+})
